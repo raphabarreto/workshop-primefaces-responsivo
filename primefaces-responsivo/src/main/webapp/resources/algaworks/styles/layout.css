@@ -29,9 +29,16 @@
 	border-right: 1px solid #eaeaea;
 }
 
+.aw-sidebar.is-toggled {
+	margin-left: 0px;
+}
+
 @media ( min-width : 960px) {
 	.aw-sidebar {
 		margin-left: 0px;
+	}
+	.aw-sidebar.is-toggled {
+		margin-left: -211px;
 	}
 }
 
@@ -44,5 +51,8 @@
 @media ( min-width : 960px) {
 	.aw-content {
 		margin-left: 210px;
+	}
+	.aw-content.is-toggled {
+		margin-left: 0;
 	}
 }
