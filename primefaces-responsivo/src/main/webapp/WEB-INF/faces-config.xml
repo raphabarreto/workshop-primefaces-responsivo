@@ -5,7 +5,7 @@
 	version="2.2">
 
 	<application>
-		<message-bundle>com.algaworks.Messages</message-bundle>
+		<message-bundle>com.workshop.Messages</message-bundle>
 	
 		<locale-config>
 			<default-locale>pt_BR</default-locale>
