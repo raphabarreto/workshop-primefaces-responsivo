@@ -18,17 +18,17 @@
 
 			<p:dataTable value="#{clientesManager.clientes}" var="cliente"
 				selectionMode="single" selection="#{clientesManager.clienteEdicao}"
-				rowKey="#{cliente.cpf}" style="margin-top: 20px">
+				rowKey="#{cliente.cpf}" style="margin-top: 20px" reflow="true">
 
 				<p:column headerText="Nome">
 					<h:outputText value="#{cliente.nome}" />
 				</p:column>
 
-				<p:column headerText="CPF" priority="3">
+				<p:column headerText="CPF">
 					<h:outputText value="#{cliente.cpf}" />
 				</p:column>
 
-				<p:column headerText="Telefone" priority="6">
+				<p:column headerText="Telefone">
 					<h:outputText value="#{cliente.telefone}" />
 				</p:column>
 
