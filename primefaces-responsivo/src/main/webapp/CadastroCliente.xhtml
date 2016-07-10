@@ -51,7 +51,8 @@
 								value="#{clientesManager.clienteEdicao.email}" />
 
 							<p:outputLabel value="Estado" for="estado" />
-							<p:selectOneMenu id="estado" value="#{clientesManager.clienteEdicao.estado}">
+							<p:selectOneMenu id="estado"
+								value="#{clientesManager.clienteEdicao.estado}">
 								<f:selectItem itemLabel="Selecione" />
 								<f:selectItem itemLabel="Minas Gerais" itemValue="Minas Gerais" />
 								<f:selectItem itemLabel="São Paulo" itemValue="São Paulo" />
@@ -96,7 +97,8 @@
 					</p:tab>
 
 					<p:tab title="Observações">
-						<p:inputTextarea rows="7" />
+						<p:inputTextarea rows="7"
+							value="#{clientesManager.clienteEdicao.observacoes}" />
 					</p:tab>
 				</p:tabView>
 			</div>

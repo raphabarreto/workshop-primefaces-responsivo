@@ -12,7 +12,8 @@
 
 			<p:toolbar>
 				<p:toolbarGroup align="right">
-					<p:commandButton value="Novo Cliente" />
+					<p:commandButton value="Novo Cliente"
+						action="#{clientesManager.novoCliente}" process="@this" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -33,7 +34,8 @@
 				</p:column>
 
 				<f:facet name="footer">
-					<p:commandButton icon="ui-icon-pencil" value="Editar" />
+					<p:commandButton icon="ui-icon-pencil" value="Editar"
+						action="CadastroCliente?faces-redirect=true" />
 				</f:facet>
 			</p:dataTable>
 
