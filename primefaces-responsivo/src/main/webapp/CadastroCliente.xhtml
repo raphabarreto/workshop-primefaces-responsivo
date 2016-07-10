@@ -20,7 +20,7 @@
 			</p:toolbar>
 
 			<div class="ui-fluid">
-				<p:tabView style="margin-top: 20px">
+				<p:tabView style="margin-top: 20px" id="tabView">
 					<p:tab title="Dados Básicos">
 						<p:panelGrid columns="4" layout="grid"
 							columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4"
@@ -58,17 +58,21 @@
 
 					<p:tab title="Endereços">
 						<p:commandButton value="Novo Endereço" style="width: auto"
-							oncomplete="PF('novoEnderecoDialog').show()" />
+							oncomplete="PF('novoEnderecoDialog').show()"
+							action="#{clientesManager.novoEndereco}" process="@this"
+							update="frm:novoEnderecoDialog">
+							<p:resetInput target="frm:novoEnderecoDialog" />
+						</p:commandButton>
 
 						<p:dataTable value="#{clientesManager.clienteEdicao.enderecos}"
 							var="endereco"
 							emptyMessage="O cliente ainda não possui endereços"
-							style="margin-top: 10px">
+							style="margin-top: 10px" id="enderecosTable">
 							<p:column headerText="Logradouro">
 								<h:outputText value="#{endereco.logradouro}" />
 							</p:column>
 							<p:column headerText="Número">
-								<h:outputText value="#{endereco.número}" />
+								<h:outputText value="#{endereco.numero}" />
 							</p:column>
 							<p:column headerText="Bairro" priority="4">
 								<h:outputText value="#{endereco.bairro}" />
@@ -83,34 +87,45 @@
 					<p:tab title="Observações">
 						<p:inputTextarea rows="7" />
 					</p:tab>
-
 				</p:tabView>
 			</div>
 
 			<p:dialog widgetVar="novoEnderecoDialog" id="novoEnderecoDialog"
 				header="Novo endereço" resizable="false" responsive="true">
 
-				<div class="ui-fluid">
+				<h:panelGroup id="novoEnderecoPanel" layout="block"
+					styleClass="ui-fluid">
+					<p:messages autoUpdate="false" />
+
 					<p:panelGrid columns="2" layout="grid"
 						styleClass="panelgrid-noborder"
 						columnClasses="ui-grid-col-4, ui-grid-col-8">
 
 						<p:outputLabel value="Logradouro" for="logradouro" />
-						<p:inputText id="logradouro" required="true" />
+						<p:inputText id="logradouro" required="true"
+							value="#{clientesManager.enderecoEdicao.logradouro}" />
 
 						<p:outputLabel value="Número" for="numero" />
-						<p:inputText id="numero" required="true" />
+						<p:inputText id="numero" required="true"
+							value="#{clientesManager.enderecoEdicao.numero}" />
 
 						<p:outputLabel value="Bairro" for="bairro" />
-						<p:inputText id="bairro" required="true" />
+						<p:inputText id="bairro"
+							value="#{clientesManager.enderecoEdicao.bairro}" />
 
 						<p:outputLabel value="Cidade" for="cidade" />
-						<p:inputText id="cidade" required="true" />
+						<p:inputText id="cidade"
+							value="#{clientesManager.enderecoEdicao.cidade}" />
 
 						<p:outputLabel />
-						<p:commandButton value="Adicionar" />
+						<p:commandButton value="Adicionar" process="novoEnderecoDialog"
+							update="tabView:enderecosTable novoEnderecoPanel"
+							oncomplete="if (!args.validationFailed) PF('novoEnderecoDialog').hide()">
+							<p:collector value="#{clientesManager.enderecoEdicao}"
+								addTo="#{clientesManager.clienteEdicao.enderecos}" />
+						</p:commandButton>
 					</p:panelGrid>
-				</div>
+				</h:panelGroup>
 
 			</p:dialog>
 		</h:form>
